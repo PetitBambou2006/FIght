@@ -14,11 +14,11 @@ SCREEN = pygame.display.set_mode((1280, 720))
 pygame.display.set_caption("Menu")
 TAILLE_perso1 = pygame.display.set_mode((1280, 720))
 
-BG = pygame.image.load("C:/Users/youen/Projet2NSI/Background.jpg")
-Player1 = pygame.image.load("C:/Users/youen/Projet2NSI/perso.jpeg")
+BG = pygame.image.load("Background.jpg")
+Player1 = pygame.image.load("perso.jpeg")
 
 def get_font(size): # Returns Press-Start-2P in the desired size
-    return pygame.font.Font("C:/Users/youen/Projet2NSI/font.ttf", size)
+    return pygame.font.Font("font.ttf", size)
 
 def play():
     while True:
@@ -86,11 +86,11 @@ def main_menu():
         MENU_TEXT = get_font(100).render("", True, "#b68f40")
         MENU_RECT = MENU_TEXT.get_rect(center=(640, 100))
 
-        PLAY_BUTTON = Button(image=pygame.image.load("C:/Users/youen/Projet2NSI/Play Rect.png"), pos=(640, 250), 
+        PLAY_BUTTON = Button(image=pygame.image.load("Play Rect.png"), pos=(640, 250), 
                             text_input="PLAY", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
-        OPTIONS_BUTTON = Button(image=pygame.image.load("C:/Users/youen/Projet2NSI/Options Rect.png"), pos=(640, 400), 
+        OPTIONS_BUTTON = Button(image=pygame.image.load("Options Rect.png"), pos=(640, 400), 
                             text_input="OPTIONS", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
-        QUIT_BUTTON = Button(image=pygame.image.load("C:/Users/youen/Projet2NSI/Quit Rect.png"), pos=(640, 550), 
+        QUIT_BUTTON = Button(image=pygame.image.load("Quit Rect.png"), pos=(640, 550), 
                             text_input="QUIT", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
 
         SCREEN.blit(MENU_TEXT, MENU_RECT)

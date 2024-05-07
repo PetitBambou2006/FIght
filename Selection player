@@ -1,0 +1,26 @@
+def draw(self):
+    rectangle(self.x,self.y, self.coul)
+    
+
+class curseur:
+    def __init__(self, j):
+        self.j = j
+        if j == 1:
+            self.x = 400
+            self.y = 480
+            self.coul =(255, 0, 0)
+        else:
+            self.x = 880
+            self.y = 440
+            self.coul =(255, 0, 0)
+        
+    def mouvement(self):
+        for event in pygame.event.get():
+            if event.type == pygame.KEYRIGHT :
+                self.x += 100
+            if event.type == pygame.KEYLEFT :
+                self.x -= 100
+            if self.x > 880 :
+                self.x -= 500
+            if self.x < 440 :
+                self.x += 100

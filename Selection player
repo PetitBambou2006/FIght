@@ -1,26 +1,30 @@
-def draw(self):
-    rectangle(self.x,self.y, self.coul)
+def draw(self,SCREEN):
+    rectangle(SCREEN,self.coul,(self.x,self.y,20,40) )
     
 
 class curseur:
     def __init__(self, j):
         self.j = j
+        liste_touche=[K_LEFT,K_RIGHT,K_q,K_d]
         if j == 1:
+            self.gauche=liste_touche[-2]
+            self.droite=liste_touche[-1]
             self.x = 400
             self.y = 480
             self.coul =(255, 0, 0)
         else:
             self.x = 880
             self.y = 440
-            self.coul =(255, 0, 0)
-        
+            self.coul =(0, 0, 255)
+            self.gauche=liste_touche[0]
+            self.droite=liste_touche[1]
     def mouvement(self):
-        for event in pygame.event.get():
-            if event.type == pygame.KEYRIGHT :
+        touche = pygame.key.get_pressed()
+        if touche[self.droite] :
                 self.x += 100
-            if event.type == pygame.KEYLEFT :
-                self.x -= 100
-            if self.x > 880 :
-                self.x -= 500
-            if self.x < 440 :
-                self.x += 100
+        if touche[self.gauche] :
+            self.x -= 100
+        if self.x > 880 :  
+            self.x -= 500
+        if self.x < 440 :
+            self.x += 100

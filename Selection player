@@ -1,11 +1,8 @@
-def draw(self,SCREEN):
-    rectangle(SCREEN,self.coul,(self.x,self.y,20,40) )
-    
-
 class curseur:
     def __init__(self, j):
         self.j = j
-        liste_touche=[K_LEFT,K_RIGHT,K_q,K_d]
+        self.block=True
+        liste_touche=[pygame.K_LEFT,pygame.K_RIGHT,pygame.K_q,pygame.K_d]
         if j == 1:
             self.gauche=liste_touche[-2]
             self.droite=liste_touche[-1]
@@ -20,11 +17,17 @@ class curseur:
             self.droite=liste_touche[1]
     def mouvement(self):
         touche = pygame.key.get_pressed()
-        if touche[self.droite] :
+        if touche[self.droite] and not(self.block) :
                 self.x += 100
-        if touche[self.gauche] :
+                self.block=True
+        if touche[self.gauche] and not(self.block):
             self.x -= 100
+            self.block=True
+        if not( touche[self.droite]) and not(touche[self.gauche]): 
+            self.block=False
         if self.x > 880 :  
             self.x -= 500
-        if self.x < 440 :
-            self.x += 100
+        if self.x < 440 and self.x!=440 :
+            self.x += 500
+    def draw(self,SCREEN):
+        pygame.draw.rect(SCREEN,self.coul,(self.x,self.y,20,40))

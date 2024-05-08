@@ -4,11 +4,15 @@ class curseur:
         self.block=True
         liste_touche=[pygame.K_LEFT,pygame.K_RIGHT,pygame.K_i,pygame.K_e,pygame.K_q,pygame.K_d]
         self.lock=self.final_lock=False
+        self.liste_type=['Shoto',
+                      'Grappler',
+                      'Special',
+                      'Zoner']
         if j == 1:
             self.lock_b=liste_touche[-3]
             self.gauche=liste_touche[-2]
             self.droite=liste_touche[-1]
-            self.x = 400
+            self.x = 401
             self.y = 480
             self.x_lock=200
             self.y_lock=660
@@ -40,6 +44,18 @@ class curseur:
             if self.x < 400 :
                 self.x += 500
             if touche[self.lock_b]:
+                if self.x<500:
+                    self.type=self.liste_type[0]
+                if 500<self.x and self.x<600:
+                    self.type=self.liste_type[1]
+                if 600<self.x and self.x<700:
+                    self.type=self.liste_type[randint(0,3)]
+                if 700<self.x and self.x<800:
+                    self.type=self.liste_type[2]
+                if 800<self.x:
+                    self.type=self.liste_type[-1]
+                    
+                    
                 self.x=self.x_lock
                 self.y=self.y_lock
                 self.lock=True
@@ -60,11 +76,13 @@ class curseur:
             if touche[self.lock_b]and not(self.final_block):
                 self.final_lock=True
         else:
-            if self.j==1:
+            if self.j!=1:
                 if self.x==1020:
-                    pass
-                
-                
-                
-    def draw(self,SCREEN):
-        pygame.draw.rect(SCREEN,self.coul,(self.x,self.y,20,40))
+                    return(2,"Right",self.type)
+                else:
+                    return(1,"Right",self.type)
+            else:
+                if self.x==200:
+                    return(1,"Left",self.type)
+                else:
+                    return(2,"Left",self.type)

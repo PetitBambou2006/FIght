@@ -2,32 +2,69 @@ class curseur:
     def __init__(self, j):
         self.j = j
         self.block=True
-        liste_touche=[pygame.K_LEFT,pygame.K_RIGHT,pygame.K_q,pygame.K_d]
+        liste_touche=[pygame.K_LEFT,pygame.K_RIGHT,pygame.K_i,pygame.K_e,pygame.K_q,pygame.K_d]
+        self.lock=self.final_lock=False
         if j == 1:
+            self.lock_b=liste_touche[-3]
             self.gauche=liste_touche[-2]
             self.droite=liste_touche[-1]
             self.x = 400
             self.y = 480
+            self.x_lock=200
+            self.y_lock=660
             self.coul =(255, 0, 0)
         else:
             self.x = 880
             self.y = 440
+            self.x_lock=1000
+            self.y_lock=660
             self.coul =(0, 0, 255)
             self.gauche=liste_touche[0]
             self.droite=liste_touche[1]
+            self.lock_b=liste_touche[2]
     def mouvement(self):
         touche = pygame.key.get_pressed()
-        if touche[self.droite] and not(self.block) :
-                self.x += 100
-                self.block=True
-        if touche[self.gauche] and not(self.block):
-            self.x -= 100
-            self.block=True
         if not( touche[self.droite]) and not(touche[self.gauche]): 
             self.block=False
-        if self.x > 880 :  
-            self.x -= 500
-        if self.x < 440 and self.x!=440 :
-            self.x += 500
+        if not(touche[self.lock_b]):
+            self.final_block=False
+        if not(self.lock) and not(self.block):
+            if touche[self.droite] :
+                self.x += 100
+                self.block=True
+            if touche[self.gauche] :
+                self.x -= 100
+                self.block=True
+            if self.x > 880 :  
+                self.x -= 500
+            if self.x < 400 :
+                self.x += 500
+            if touche[self.lock_b]:
+                self.x=self.x_lock
+                self.y=self.y_lock
+                self.lock=True
+                self.final_block=True
+        elif self.lock and not(self.final_lock) : 
+            if not(self.block):
+                
+                if touche[self.droite] and not(self.block) :
+                    self.x += 20
+                    self.block=True             
+                if touche[self.gauche] and not(self.block):
+                    self.x -= 20
+                    self.block=True
+                if self.x_lock+30<self.x:
+                    self.x-=40
+                if self.x_lock>self.x:
+                    self.x+=40
+            if touche[self.lock_b]and not(self.final_block):
+                self.final_lock=True
+        else:
+            if self.j==1:
+                if self.x==1020:
+                    pass
+                
+                
+                
     def draw(self,SCREEN):
         pygame.draw.rect(SCREEN,self.coul,(self.x,self.y,20,40))

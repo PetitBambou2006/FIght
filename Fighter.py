@@ -43,7 +43,7 @@ class Fighter:
                         }
         self.liste_bouton = liste_bouton[side]
         self.liste_etat = ["bloque", "bouge", "attaque"]
-        self.skin = skin
+        self.skin = str(skin)
         self.sol = 700
         self.typ2 = typ
         self.side = side
@@ -109,77 +109,76 @@ class Fighter:
             self.coef_larg3= 1.5
         if self.skillset[2]=="G":
             self.coef_larg3= 2
-        if typ=="Shoto" or typ=="Zoner"or typ=="Special":
-            self.att_l_sfx=pygame.mixer.Sound("assets/Perso/"+str(typ)+"/Sfx/att_l_sfx.mp3")
-            if typ=="Shoto":
-                self.att_m_sfx=pygame.mixer.Sound("assets/Perso/"+str(typ)+"/Sfx/att_m_sfx.mp3")
-            self.att_h_sfx=pygame.mixer.Sound("assets/Perso/"+str(typ)+"/Sfx/att_h_sfx.mp3")
-            self.subir_sfx=pygame.mixer.Sound("assets/Perso/"+str(typ)+"/Sfx/subir_sfx.mp3")
-            self.subir_sfx.set_volume(0.25)
+        self.att_l_sfx=pygame.mixer.Sound("assets/Perso/"+str(typ)+"/Sfx/att_l_sfx.mp3")
+        if not(typ=="Special"or typ=="Zoner"):
+            self.att_m_sfx=pygame.mixer.Sound("assets/Perso/"+str(typ)+"/Sfx/att_m_sfx.mp3")
+        self.att_h_sfx=pygame.mixer.Sound("assets/Perso/"+str(typ)+"/Sfx/att_h_sfx.mp3")
+        self.subir_sfx=pygame.mixer.Sound("assets/Perso/"+str(typ)+"/Sfx/subir_sfx.mp3")
+        self.subir_sfx.set_volume(0.25)
         
         # subir
-        self.p00 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side +
+        self.p00 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side +
                                                            "/se_prend_un_coup_"+self.comp+".png"),
                                          (self.larg, self.taille/2))
-        self.p0 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side +
+        self.p0 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side +
                                                            "/se_prend_un_coup_"+self.comp+".png"),
                                          (self.larg, self.taille))
         # pas1
-        self.p1 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side +
+        self.p1 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side +
                                                            "/stand_"+self.comp+".png"),
                                          (self.larg, self.taille))
-        self.ps1 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side +
+        self.ps1 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side +
                                                            "/stand2_"+self.comp+".png"),
                                          (self.larg, self.taille))
-        self.p2 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side +
+        self.p2 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side +
                                                            "/crouch_"+self.comp+".png"),
                                          (self.larg, self.taille/2))
-        self.p3 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side +
+        self.p3 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side +
                                                            "/jump_"+self.comp+".png"),
                                          (self.larg, self.taille))
         if self.skillset[0]!="P":
-            self.p4 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side +
+            self.p4 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side +
                                                            "/att_l_"+self.comp+".png"),
                                          (self.larg*self.coef_larg1, self.taille))
-            self.p7 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side +
+            self.p7 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side +
                                                            "/att_l_"+self.comp+".png"),
                                          (self.larg*self.coef_larg1, self.taille/2))
         else:
-            self.p4 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side +
+            self.p4 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side +
                                                            "/stand_"+self.comp+".png"),
                                          (self.larg, self.taille))
-            self.p7 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side +
+            self.p7 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side +
                                                            "/stand_"+self.comp+".png"),
                                          (self.larg, self.taille/2))
         if self.skillset[1]!="P":
-            self.p5 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side +
+            self.p5 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side +
                                                            "/att_m_"+self.comp+".png"),
                                          (self.larg*self.coef_larg2, self.taille))
-            self.p8 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side +
+            self.p8 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side +
                                                            "/att_m_"+self.comp+".png"),
                                          (self.larg*self.coef_larg2, self.taille/2))
         else:
-            self.p5 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side +
+            self.p5 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side +
                                                            "/stand_"+self.comp+".png"),
                                          (self.larg, self.taille))
-            self.p8 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side +
+            self.p8 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side +
                                                            "/stand_"+self.comp+".png"),
                                          (self.larg, self.taille/2))
         if self.skillset[2]!="P":
-            self.p6 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side +
+            self.p6 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side +
                                                            "/att_h_"+self.comp+".png"),
                                          (self.larg*self.coef_larg3, self.taille))
-            self.p9 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side +
+            self.p9 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side +
                                                            "/att_h_"+self.comp+".png"),
                                          (self.larg*self.coef_larg3, self.taille/2))
         else:
-            self.p6 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side +
+            self.p6 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side +
                                                            "/stand_"+self.comp+".png"),
                                          (self.larg, self.taille))
-            self.p9 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side +
+            self.p9 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side +
                                                            "/stand_"+self.comp+".png"),
                                          (self.larg, self.taille/2))
-        self.p10 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side +
+        self.p10 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side +
                                                            "/garde_"+self.comp+".png"),
                                          (self.larg, self.taille))
 
@@ -199,72 +198,72 @@ class Fighter:
         self.p9="att_h_crouch"
         self.p10="garde"
         """
-        self.p11 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side2 +
+        self.p11 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side2 +
                                                             "/stand_"+self.comp2+".png"),
                                           (self.larg, self.taille))
         # subir
-        self.p21 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side2 +
+        self.p21 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side2 +
                                                            "/se_prend_un_coup_"+self.comp2+".png"),
                                          (self.larg, self.taille))
-        self.p210 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side2 +
+        self.p210 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side2 +
                                                            "/se_prend_un_coup_"+self.comp2+".png"),
                                          (self.larg, self.taille/2))
         # pas1
-        self.p11 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side2 +
+        self.p11 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side2 +
                                                            "/stand_"+self.comp2+".png"),
                                          (self.larg, self.taille))
-        self.ps2 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side2 +
+        self.ps2 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side2 +
                                                            "/stand2_"+self.comp2+".png"),
                                          (self.larg, self.taille))
-        self.p12 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side2 +
+        self.p12 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side2 +
                                                            "/crouch_"+self.comp2+".png"),
                                          (self.larg, self.taille/2))
-        self.p13 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side2 +
+        self.p13 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side2 +
                                                            "/jump_"+self.comp2+".png"),
                                          (self.larg, self.taille))
         if self.skillset[0]!="P":
-            self.p14 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side2 +
+            self.p14 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side2 +
                                                            "/att_l_"+self.comp2+".png"),
                                          (self.larg*self.coef_larg1, self.taille))
-            self.p17 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side2 +
+            self.p17 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side2 +
                                                            "/att_l_"+self.comp2+".png"),
                                          (self.larg*self.coef_larg1, self.taille/2))
         else:
-            self.p14 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side2 +
+            self.p14 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side2 +
                                                            "/stand_"+self.comp2+".png"),
                                          (self.larg, self.taille))
-            self.p17 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side2 +
+            self.p17 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side2 +
                                                            "/stand_"+self.comp2+".png"),
                                          (self.larg, self.taille/2))
         if self.skillset[1]!="P":
-            self.p15 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side2 +
+            self.p15 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side2 +
                                                            "/att_m_"+self.comp2+".png"),
                                          (self.larg*self.coef_larg2, self.taille))
-            self.p18 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side2 +
+            self.p18 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side2 +
                                                            "/att_m_"+self.comp2+".png"),
                                          (self.larg*self.coef_larg2, self.taille/2))
         else:
-            self.p15 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side2 +
+            self.p15 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side2 +
                                                            "/stand_"+self.comp2+".png"),
                                          (self.larg, self.taille))
-            self.p18 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side2 +
+            self.p18 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side2 +
                                                            "/stand_"+self.comp2+".png"),
                                          (self.larg, self.taille/2))
         if self.skillset[2]!="P":
-            self.p16 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side2 +
+            self.p16 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side2 +
                                                            "/att_h_"+self.comp2+".png"),
                                          (self.larg*self.coef_larg3, self.taille))
-            self.p19 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side2 +
+            self.p19 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side2 +
                                                            "/att_h_"+self.comp2+".png"),
                                          (self.larg*self.coef_larg3, self.taille/2))
         else:
-            self.p16 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side2 +
+            self.p16 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side2 +
                                                            "/stand_"+self.comp2+".png"),
                                          (self.larg, self.taille))
-            self.p19 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side2 +
+            self.p19 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side2 +
                                                            "/stand_"+self.comp2+".png"),
                                          (self.larg, self.taille/2))
-        self.p20 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+skin+"/"+side2 +
+        self.p20 = pygame.transform.scale(pygame.image.load("assets/Perso/"+typ+"/"+str(skin)+"/"+side2 +
                                                            "/garde_"+self.comp2+".png"),
                                          (self.larg, self.taille))
 
@@ -423,7 +422,7 @@ class Fighter:
                 
 
             elif (touche[b["mid"]] and not(self.arret_m1)):
-                if self.typ2=="Shoto":
+                if not(self.typ2=="Special"or self.typ2=="Zoner"):
                     self.att_m_sfx.play()
                 if self.position == "Low":
                     self.assis_de_base2 = True
@@ -446,8 +445,7 @@ class Fighter:
                 self.arret_m1 = True
                 self.cpt_m = 30
             elif touche[b["light"]] and not (self.arret_l1) :
-                if self.typ2=="Shoto"or self.typ2=="Zoner":
-                    self.att_l_sfx.play()
+                self.att_l_sfx.play()
                 self.arret_l1 = True
                 self.blocking = False
                 
@@ -475,8 +473,7 @@ class Fighter:
             elif touche[b["heavy"]] and not (self.arret_h1) :
                 self.blocking = False
                 self.arret_h1 = True
-                if self.typ2=="Shoto" or self.typ2=="Zoner":
-                    self.att_h_sfx.play()
+                self.att_h_sfx.play()
                 if self.skillset[2]=="P":
                     self.cpt_h = 30
                 else:

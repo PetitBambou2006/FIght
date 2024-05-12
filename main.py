@@ -2,7 +2,7 @@
 """
 Created on Tue Apr 30 12:52:08 2024
 
-@author: youen
+@author: youenn
 """
 
 import pygame, sys
